@@ -1,10 +1,13 @@
 package de.julian.models;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BookList {
@@ -44,6 +47,70 @@ public class BookList {
         }
     }
 
+    public void inputBooksFromFile(String filename) {
+        Path path = Paths.get(filename);
+        File file = new File(String.valueOf(path.toFile()));
+        //File file = new File("booksinput.txt");
+
+        try (
+                BufferedReader br = Files.newBufferedReader(file.toPath())
+        ) {
+
+            int count = 0;
+            String line;
+            String[] booksInput;
+            while ((line = br.readLine()) != null) {        // readLine() reads only line
+                System.out.println(line);
+                booksInput = line.split(",");
+
+                // Trim space in every subinput
+                for (int i = 0; i < booksInput.length; i++) {
+                    booksInput[i] = booksInput[i].trim();
+                }
+
+                for (int j = 0; j < booksInput.length; j = j + 3) {
+                    int newBookID = (bookList.isEmpty()) ? 1 : (bookList.getLast().getBookID() + 1);
+                    bookList.add(new Book(newBookID, booksInput[0], booksInput[1], Integer.parseInt(booksInput[2])));
+                }
+
+                count++;
+
+            }
+            System.out.println("\n" + count + " lines read from file input");
+            System.out.println(bookList);
+
+        } catch (IOException ex) {
+            System.out.println("Inputfile could not be found: " + ex.getMessage());
+        }
+    }
+
+    public void outputBooksToFile(String outputFileName) {
+        Path path = Paths.get(outputFileName);
+        File file = new File(String.valueOf(path.toFile()));
+        //File file = new File("output.txt");
+
+        try (
+                PrintWriter pw = new PrintWriter(file)
+        ) {
+
+            int count = 0;
+
+            for (Book book : bookList) {
+                pw.println(book);
+                System.out.println(book);
+                count++;
+
+                if (count == 2) {
+                    pw.flush();
+                }
+            }
+            System.out.println("\n" + count + " Lines written");
+        } catch (FileNotFoundException e) {
+            System.out.println("Output file could not be found:" + e.getMessage());
+            //throw new RuntimeException(e);
+        }
+    }
+
     public void printSortedBookList() {
         Comparator<Book> TitleSorter = (b1, b2) -> b1.getTitle().compareTo(b2.getTitle());
         Stream<Book> bookStream = bookList.stream().sorted(TitleSorter);
@@ -51,7 +118,7 @@ public class BookList {
     }
 
     public void printFilteredBookList(String filterString) {
-        System.out.println("Booktitle contains input: " + predicateBookFilter(bookList,  (Book book) -> book.getTitle().contains(filterString)));
+        System.out.println("Booktitle contains input: " + predicateBookFilter(bookList, (Book book) -> book.getTitle().contains(filterString)));
     }
 
     private List<Book> predicateBookFilter(List<Book> books, Predicate<Book> p) {

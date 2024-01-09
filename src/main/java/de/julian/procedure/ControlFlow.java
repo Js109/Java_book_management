@@ -1,31 +1,31 @@
 package de.julian.procedure;
 
 import de.julian.models.BookList;
-
 import java.util.Scanner;
 
 public class ControlFlow {
 
     public void startControlFlow() {
         Scanner sc = new Scanner(System.in);
+        BookList bookList = new BookList();
         int counter = 0;
 
         String sip;
         int idToUpdate;
 
         while (counter == 0) {
-            System.out.println("\nWhich operation would you like to use? \n Type in 1 to 'Show Books' \n Type in 2 to 'Add Book' \n Type in 3 to 'Delete Book \n Type in 4 to 'Update Book' \n Type in 5 to 'Add Book - Input from text file' \n Type in 6 to 'Show Books - Output in text file' \n Type in 7 to quit the program.");
+            System.out.println("\nWhich operation would you like to use? \n Type in 1 to 'Show Books' \n Type in 2 to 'Add Book' \n Type in 3 to 'Delete Book \n Type in 4 to 'Update Book' \n Type in 5 to 'Add Book - Input from text file' \n Type in 6 to 'Show Books - Output in text file' \n Type in 7 to 'Show Books in sorted order regarding title' \n Type in 8 to 'Show filtered Books - Example: title' \n Type in 9 to quit the program.");
             int number = sc.nextInt();
             sc.nextLine();
 
             switch (number) {
                 case 1:
                     System.out.println("Show Books: \n");
-                    new BookList().printBookList();
+                    bookList.printBookList();
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException ex) {
-                        System.out.println("Fehler in Thread verzögerung" + ex.getMessage());
+                        System.out.println("Error in thread" + ex.getMessage());
                     }
                     break;
                 case 2:
@@ -36,7 +36,7 @@ public class ControlFlow {
                 case 3:
                     System.out.println("Remove Book - example: title");
                     sip = sc.nextLine();
-                    new BookList().removeBook(sip);
+                    bookList.removeBook(sip);
                     break;
                 case 4:
                     System.out.println("Update Book. Give ID of the book to update - example: 5");
@@ -47,19 +47,23 @@ public class ControlFlow {
                     updateBook(idToUpdate, sip);
                     break;
                 case 5:
-                    System.out.println("Add Book - Input from text file");
+                    System.out.println("Add Book - Input from text file - example: booksinput.txt");
+                    sip = sc.nextLine();
+                    bookList.inputBooksFromFile(sip);
                     break;
                 case 6:
-                    System.out.println("Show Books - Output in text file");
+                    System.out.println("Show Books - Output in text file - example output name: outputedbooks.txt");
+                    sip = sc.nextLine();
+                    bookList.outputBooksToFile(sip);
                     break;
                 case 7:
-                    System.out.println("Show Books in sorted order regarding title: \n");
-                    new BookList().printSortedBookList();
+                    System.out.println("Show Books in sorted order regarding title \n");
+                    bookList.printSortedBookList();
                     break;
                 case 8:
                     System.out.println("Show filtered Books - Example: title");
                     sip = sc.nextLine();
-                    new BookList().printFilteredBookList(sip);
+                    bookList.printFilteredBookList(sip);
                     break;
                 case 9:
                     System.out.println("Quitted program");
