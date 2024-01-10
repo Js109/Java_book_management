@@ -54,7 +54,7 @@ public class Book implements Comparable<Book> {
         return "BookID " + bookID + ", " + title + ", " + author + ", " + isbn;
     }
 
-    // equals() und hashCode() have be overriden for HashSet
+    // equals() und hashCode() have be overriden for HashSet, HashMap and LinkedHashSet, LinkedHashMap
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,7 +68,7 @@ public class Book implements Comparable<Book> {
         return Objects.hash(bookID, title, author, isbn);
     }
 
-    // compareTo ist nicht die richtige Vergleichsmethode für uns, da es Strings lexicografisch vergleich
+    // compareTo does a lexicographic comparison of Strings
     @Override
     public int compareTo(Book o) {
         // this - that
