@@ -1,6 +1,7 @@
 package de.julian.procedure;
 
 import de.julian.models.BookList;
+import de.julian.threads.ParallelSortingListByAuthor;
 
 import java.util.Scanner;
 
@@ -15,7 +16,7 @@ public class ControlFlow {
         int idToUpdate;
 
         while (counter == 0) {
-            System.out.println("\nWhich operation would you like to use? \n Type in 1 to 'Show Books' \n Type in 2 to 'Add Book' \n Type in 3 to 'Delete Book \n Type in 4 to 'Update Book' \n Type in 5 to 'Add Book - Input from text file' \n Type in 6 to 'Show Books - Output in text file' \n Type in 7 to 'Show Books in alphabetic sorted order regarding title' \n Type in 8 to 'Show filtered Books' \n Type in 9 to quit the program.");
+            System.out.println("\nWhich operation would you like to use? \n Type in 1 to 'Show Books' \n Type in 2 to 'Add Book' \n Type in 3 to 'Delete Book \n Type in 4 to 'Update Book' \n Type in 5 to 'Add Book - Input from text file' \n Type in 6 to 'Show Books - Output in text file' \n Type in 7 to 'Show Books in alphabetic sorted order regarding title' \n Type in 8 to 'Show Books in alphabetic sorted order regarding author' \n Type in 9 to 'Show filtered Books' \n Type in 10 to quit the program.");
             int number = sc.nextInt();
             sc.nextLine();
 
@@ -78,11 +79,15 @@ public class ControlFlow {
                     bookList.printSortedBookList();
                     break;
                 case 8:
+                    System.out.println("Show Books in alphabetic sorted order regarding author \n");
+                    new ParallelSortingListByAuthor().parallelAuthorSortingInTwoThreads();
+                    break;
+                case 9:
                     System.out.println("Show filtered Books - Example: title");
                     sip = sc.nextLine();
                     bookList.printFilteredBookList(sip);
                     break;
-                case 9:
+                case 10:
                     System.out.println("Quitted program");
                     counter = counter + 1;
                     break;

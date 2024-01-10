@@ -1,5 +1,6 @@
 # Book management system as command line application
-This is a small book management system as a Java application. 
+This is a small book management system as a Java application.   
+In general, this project is intended to demonstrate extended Java programming concepts like Collections, Input/Output, Lambda Expressions, Stream API and Multithreading.
 
 ## Setup instructions
 As a prerequisite, Java version 21 and Apache Maven 3.8.5 must be installed. However, the build may also work with older Java versions.
@@ -14,8 +15,9 @@ The book management system offers:
 5. Add Books - Input from text file
 6. Show Books - Output in text file
 7. Show Books in alphabetic sorted order regards to title
-8. Show filtered Books
-9. Quit
+8. Show Books in alphabetic sorted order regarding author
+9. Show filtered Books
+10. Quit
 
 Keep in mind that the data memory is not persisted.
 

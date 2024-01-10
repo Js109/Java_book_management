@@ -14,6 +14,10 @@ public class BookList {
 
     static List<Book> bookList = new ArrayList<>();
 
+    public static List<Book> getBookList() {
+        return bookList;
+    }
+
     public void addBook(String title, String author, int isbn) {
         if (bookList.isEmpty())
             bookList.add(new Book(1, title, author, isbn));
