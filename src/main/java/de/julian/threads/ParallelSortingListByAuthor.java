@@ -21,13 +21,11 @@ public class ParallelSortingListByAuthor {
 
         bookList1 = BookList.getBookList()
                 .stream()
-                .filter(book -> startsWithAtoM(book.getAuthor()))
-                .collect(Collectors.toList());
+                .filter(book -> startsWithAtoM(book.getAuthor())).toList();
 
         bookList2 = BookList.getBookList()
                 .stream()
-                .filter(book -> startsWithNtoZ(book.getAuthor()))
-                .collect(Collectors.toList());
+                .filter(book -> startsWithNtoZ(book.getAuthor())).toList();
 
 
         // generate two threads for the sorting

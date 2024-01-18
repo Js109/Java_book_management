@@ -82,7 +82,6 @@ public class BookList {
             }
             System.out.println("\n" + count + " lines read from file input");
             System.out.println(bookList);
-
         } catch (IOException ex) {
             System.out.println("Inputfile could not be found: " + ex.getMessage());
         }
@@ -91,7 +90,6 @@ public class BookList {
     public void outputBooksToFile(String outputFileName) {
         Path path = Paths.get(outputFileName);
         File file = new File(String.valueOf(path.toFile()));
-        //File file = new File("output.txt");
 
         try (
                 PrintWriter pw = new PrintWriter(file)
@@ -103,15 +101,13 @@ public class BookList {
                 pw.println(book);
                 System.out.println(book);
                 count++;
-
-                if (count == 2) {
-                    pw.flush();
-                }
             }
+            // empty the buffer
+            pw.flush();
+
             System.out.println("\n" + count + " Lines written");
         } catch (FileNotFoundException e) {
             System.out.println("Output file could not be found:" + e.getMessage());
-            //throw new RuntimeException(e);
         }
     }
 

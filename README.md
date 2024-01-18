@@ -14,9 +14,9 @@ The book management system offers:
 4. Update Book
 5. Add Books - Input from text file
 6. Show Books - Output in text file
-7. Show Books in alphabetic sorted order regards to title
-8. Show Books in alphabetic sorted order regarding author
-9. Show filtered Books
+7. Show Books lexicographically by title
+8. Show Books lexicographically by author
+9. Show filtered Books by title
 10. Quit
 
 Keep in mind that the data memory is not persisted.

@@ -78,23 +78,3 @@ public class Book implements Comparable<Book> {
         return Integer.compare(this.isbn, o.isbn) + this.title.compareTo(o.title) + this.author.compareTo(o.author);
     }
 }
-
-/*class AscendingSorter<B extends Comparable<? super B>> implements Comparator<B> {
-    @Override
-    public int compare(B b1, B b2) {
-        return b1.compareTo(b2);
-    }
-}*/
-
-class ISBNSorter implements Comparator<Book> {
-
-    @Override
-    public int compare(Book b1, Book b2) {
-        return Integer.compare(b1.getISBN(), b2.getISBN());
-    }
-}
-
-
-
-
-
